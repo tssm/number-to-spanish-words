@@ -1,0 +1,21 @@
+{
+  "name": "integer-to-spanish-words",
+  "version": "1.0.0-alpha",
+  "repository": "git@github.com:tssm/integer-to-spanish-words.git",
+  "author": "Tae Sandoval <tssm@users.noreply.github.com>",
+  "license": "CC0-1.0",
+  "main": "build/main.js",
+  "dependencies": {
+    "ramda": "^0.23.0"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.38.0",
+    "flow-typed": "^2.0.0",
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "flow-check": "flow;",
+    "flow-remove": "flow-remove-types src/ --out-dir build/ --all --pretty",
+    "test": "tape 'tests/**/*.js'"
+  }
+}

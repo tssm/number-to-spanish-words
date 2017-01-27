@@ -1,0 +1,7 @@
+[ignore]
+.*/build/.*
+.*/node_modules/.*
+.*/tests/.*
+
+[options]
+all=true
