@@ -23,12 +23,15 @@ t('Test tens', (t) => {
 t('Test hundreds', (t) => {
 	t.equal(integerToSpanishWords(100), 'cien', 'Should be one hundred');
 	t.equal(integerToSpanishWords(101), 'ciento uno', 'Should be one hundred and one');
+	t.equal(integerToSpanishWords(110), 'ciento diez', 'Should be one hundred ten');
 	t.equal(integerToSpanishWords(132), 'ciento treinta y dos', 'Should be one hundred and thirty two');
 	t.end();
 });
 
 t('Test thousands', (t) => {
 	t.equal(integerToSpanishWords(1000), 'mil', 'Should be one thousand');
+	t.equal(integerToSpanishWords(1001), 'mil uno', 'Should be one thousand one');
+	t.equal(integerToSpanishWords(1010), 'mil diez', 'Should be one thousand ten');
 	t.equal(integerToSpanishWords(1002), 'mil dos', 'Should be one thousand and two');
 	t.equal(integerToSpanishWords(1132), 'mil ciento treinta y dos', 'Should be one thousand and thirty two');
 	t.equal(integerToSpanishWords(2503), 'dos mil quinientos tres', 'Should be 2503');
@@ -43,6 +46,7 @@ t('Test thousands', (t) => {
 t('Test millions', (t) => {
 	t.equal(integerToSpanishWords(1000000), 'un millón', 'Should be one million');
 	t.equal(integerToSpanishWords(1000001), 'un millón uno', 'Should be one million one');
+	t.equal(integerToSpanishWords(1000010), 'un millón diez', 'Should be one million ten');
 	t.equal(integerToSpanishWords(1201309), 'un millón docientos un mil trecientos nueve', 'Should be 1201309');
 	t.equal(integerToSpanishWords(3142503), 'tres millones ciento cuarenta y dos mil quinientos tres', 'Should be 3142503');
 	t.equal(integerToSpanishWords(10000000), 'diez millones', 'Should be ten millions');
