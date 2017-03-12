@@ -5,15 +5,21 @@ const integerToSpanishWords = require('../build/main.js');
 
 t('Test units', (t) => {
 	t.equal(integerToSpanishWords(8), 'ocho', 'Should be eight');
+	t.equal(integerToSpanishWords(8.3), 'ocho coma tres', 'Should be eight point tree');
 	t.end();
 });
 
 t('Test tens', (t) => {
 	t.equal(integerToSpanishWords(10), 'diez', 'Should be ten');
+	t.equal(integerToSpanishWords(10.090), 'diez coma cero nueve', 'Should be 10.090');
+	t.equal(integerToSpanishWords(10.09), 'diez coma cero nueve', 'Should be 10.09');
+	t.equal(integerToSpanishWords(10.009), 'diez coma cero cero nueve', 'Should be 10.009');
+	t.equal(integerToSpanishWords(10.00901), 'diez coma cero cero novecientos uno', 'Should be 10.00901');
 	t.equal(integerToSpanishWords(11), 'once', 'Should be eleven');
 	t.equal(integerToSpanishWords(16), 'dieciséis', 'Should be sixteen');
 	t.equal(integerToSpanishWords(20), 'veinte', 'Should be twenty');
 	t.equal(integerToSpanishWords(22), 'veintidos', 'Should be twenty two');
+	t.equal(integerToSpanishWords(22.3502), 'veintidos coma tres mil quinientos dos', 'Should be 22.3502');
 	t.equal(integerToSpanishWords(30), 'treinta', 'Should be thirty');
 	t.equal(integerToSpanishWords(33), 'treinta y tres', 'Should be thirty tree');
 	t.equal(integerToSpanishWords(44), 'cuarenta y cuatro', 'Should be forty four');

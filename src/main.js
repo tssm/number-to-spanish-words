@@ -1,51 +1,23 @@
 'use strict';
 
-const r = require('ramda');
+const R = require('ramda');
 
-const words = require('./words.js');
+const transform = require('./transform.js');
 
-module.exports = (integer: number): string => {
-	const digits = r.reverse(Array.from(integer.toString()));
-	const groups = r.splitEvery(3, digits);
-	const transformedGroups = r.map(digits => {
-		return digits.reduce((previous, current, index) => [
-			words[index][parseInt(current)],
-			...previous
-		], [])
-			.join(' ')
-			.replace(/diez cero/g, 'diez')
-			.replace(/diez uno/g, 'once')
-			.replace(/diez dos/g, 'doce')
-			.replace(/diez tres/g, 'trece')
-			.replace(/diez cuatro/g, 'catorce')
-			.replace(/diez cinco/g, 'quince')
-			.replace(/diez /g, 'dieci')
-			.replace(/dieciseis/g, 'dieciséis')
-			.replace(/veinte y cero/g, 'veinte')
-			.replace(/veinte y /g, 'veinti')
-		;
-	}, groups);
+module.exports = (number: number): string => {
+	// TODO: Avoid string conversion?
+	const numberAsString = R.toString(number);
+	const [ integerPart, fractionalPart ] = R.split('.', numberAsString);
 
-	return [
-		...[transformedGroups[3]],
-		transformedGroups[3] ? 'mil' : '',
-		...[transformedGroups[2]],
-		transformedGroups[2] ? 'millones' : '',
-		...[transformedGroups[1]],
-		transformedGroups[1] ? 'mil' : '',
-		...[transformedGroups[0]]
-	].join(' ')
-		.replace(/(?: y )*cero/g, '')
-		.replace(/\s+/g, ' ')
-		.replace(/^ | $/g, '')
-		.replace(/uno millones/g, 'un millón')
-		.replace(/uno mil/g, 'un mil')
-		.replace(/^un mil /g, 'mil ')
-		.replace(/^un mil$/g, 'mil')
-		.replace(/ciento$/g, 'cien')
-		.replace(/ciento millones/g, 'cien millones')
-		.replace(/ciento mil/g, 'cien mil')
-		.replace(/millón mil/g, 'millón')
-		.replace(/millones mil/g, 'millones')
-	;
+	const transformedIntegerPart = transform(integerPart);
+
+	const fractionalLeadingZeroes = R.replace(/0/g, 'cero ', R.match(/^0+/, fractionalPart || '')[0] || '');
+	const fractionalWithoutLeadingZeroes = transform(R.replace(/^0+/, '', fractionalPart || ''));
+	const transformedFractionalPart = (fractionalPart
+		? ' coma '
+			+ fractionalLeadingZeroes
+			+ fractionalWithoutLeadingZeroes
+		: '');
+
+	return transformedIntegerPart + transformedFractionalPart;
 };
