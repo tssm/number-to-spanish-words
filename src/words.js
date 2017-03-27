@@ -36,6 +36,5 @@ module.exports = Object.freeze([
 		'setecientos',
 		'ochocientos',
 		'novecientos',
-		'mil'
 	])
 ]);
