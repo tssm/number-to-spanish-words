@@ -53,6 +53,7 @@ t('Test millions', (t) => {
 	t.equal(integerToSpanishWords(1000000), 'un millón', 'Should be one million');
 	t.equal(integerToSpanishWords(1000001), 'un millón uno', 'Should be one million one');
 	t.equal(integerToSpanishWords(1000010), 'un millón diez', 'Should be one million ten');
+	t.equal(integerToSpanishWords(1010010), 'un millón diez mil diez', 'Should be 1010010');
 	t.equal(integerToSpanishWords(1201309), 'un millón docientos un mil trecientos nueve', 'Should be 1201309');
 	t.equal(integerToSpanishWords(3142503), 'tres millones ciento cuarenta y dos mil quinientos tres', 'Should be 3142503');
 	t.equal(integerToSpanishWords(10000000), 'diez millones', 'Should be ten millions');
